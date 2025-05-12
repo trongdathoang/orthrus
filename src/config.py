@@ -647,15 +647,24 @@ ntype2id ={
 }
 
 def init_database_connection(cfg):
-    database_name = cfg.dataset.database
-    connect = psycopg2.connect(
-        database=database_name,
-        user=cfg.database.user,
-        password=cfg.database.password,
-        host=cfg.database.host,
-        port=cfg.database.port,
-        # Add these parameters
-        options='-c unix_socket_directories=/tmp'
-    )
+    if cfg.preprocessing.build_graphs.use_all_files:
+        database_name = cfg.dataset.database_all_file
+    else:
+        database_name = cfg.dataset.database
+
+    if cfg.database.host is not None:
+        connect = psycopg2.connect(database = database_name,
+                                   host = "127.0.0.1",
+                                   port = "5432",
+                                   user = cfg.database.user,
+                                   password = cfg.database.password,
+                                   options = "-c unix_socket_directories=/tmp")
+    else:
+        connect = psycopg2.connect(database = database_name,
+                                   host = "127.0.0.1",
+                                   port = "5432",
+                                   user = cfg.database.user,
+                                   password = cfg.database.password,
+                                   options = "-c unix_socket_directories=/tmp")
     cur = connect.cursor()
     return cur, connect
