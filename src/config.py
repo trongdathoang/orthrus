@@ -200,7 +200,7 @@ DATASET_DEFAULT_CONFIG = {
           ]
      },
      "CADETS_E3": {
-          "raw_dir": "/Users/dathoang/orthrus_data/cadets_e3",
+          "raw_dir": "/home/thoang/orthrus_data/cadets_e3",
           "database": "cadets_e3",
           "database_all_file": "cadets_e3_all",
           "num_node_types": 3,

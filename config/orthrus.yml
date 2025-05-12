@@ -80,3 +80,8 @@ triage :
       score_method: degree
       workers: 8
       visualize: False
+
+"CADETS_E3": {
+    "raw_dir": "/home/thoang/orthrus_data/cadets_e3",
+    ...
+}
