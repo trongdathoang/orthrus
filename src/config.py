@@ -645,3 +645,17 @@ ntype2id ={
      3: 'netflow',
      'netflow': 3,
 }
+
+def init_database_connection(cfg):
+    database_name = cfg.dataset.database
+    connect = psycopg2.connect(
+        database=database_name,
+        user=cfg.database.user,
+        password=cfg.database.password,
+        host=cfg.database.host,
+        port=cfg.database.port,
+        # Add these parameters
+        options='-c unix_socket_directories=/tmp'
+    )
+    cur = connect.cursor()
+    return cur, connect
